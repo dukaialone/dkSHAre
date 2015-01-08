@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/public/libs/bootstrap/css/bootstrap.min.css' />
+    <script type="text/javascript" src="/public/libs/jquery-2.1.0.js"></script>
+    <script type="text/javascript" src="/public/libs/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<style>
+    body{
+        min-height: 2000px;
+        padding-top: 70px;
+    }
+</style>
+<body>
+<!-- Fixed navbar -->
+    <div class="container">
+        <div class="form-group">
+        <form role="form" action="/activity/creat" method="post">
+            <div class="form-group">
+                <label for="title">标题</label>
+                <input type="text" class="form-control" id="title" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="sub_title">子标题</label>
+                <input type="text" class="form-control" id="sub_title" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="focus_img">焦点图</label>
+                <input type="text" class="form-control" id="focus_img" placeholder="">
+            </div>
+            <button type="button" class="btn btn-default btn-submit">提交</button>
+        </form>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    (function($){
+        $(".btn-submit:first").on("click",function(){
+            $.ajax({
+                type : "post",
+                dataType : "json",
+                url : "/activity/creat",
+                data : {title:$("form #title").val(),sub_title:$("form #sub_title").val(),focus_img:$("form #focus_img").val()},
+                success : function(data, status, xhr) {
+                }
+            })
+        })
+    })($)
+</script>
+</html>
